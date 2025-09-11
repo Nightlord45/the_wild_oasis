@@ -16,7 +16,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
   const isEditSession = Boolean(editId);
 
   const queryClient = useQueryClient();
-  const { mutate: creatCabin, isPending: isCreating } = useMutation({
+  const { mutate: createCabin, isPending: isCreating } = useMutation({
     mutationFn: createEditCabin,
     onSuccess: () => {
       toast.success("Cabin successfully created!");
@@ -27,6 +27,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
     },
     onError: (error) => toast.error(error.message),
   });
+
   const { mutate: editCabin, isPending: isEditing } = useMutation({
     mutationFn: ({ newCabinData, id }) => createEditCabin(newCabinData, id),
     onSuccess: () => {
@@ -50,8 +51,9 @@ function CreateCabinForm({ cabinToEdit = {} }) {
 
   function onSubmit(data) {
     const image = typeof data.image === "string" ? data.image : data.image[0];
-    if (isEditing) editCabin({ newCabinData: { ...data, image } }, editId);
-    else creatCabin({ ...data, image: image });
+    if (isEditSession)
+      editCabin({ newCabinData: { ...data, image }, id: editId });
+    else createCabin({ ...data, image: image });
   }
 
   return (
