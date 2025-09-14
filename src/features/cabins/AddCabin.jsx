@@ -1,7 +1,6 @@
 import Button from "../../ui/Button.jsx";
 import CreateCabinForm from "./CreateCabinForm.jsx";
 import Modal from "../../ui/Modal.jsx";
-import CabinTable from "./CabinTable.jsx";
 
 const AddCabin = () => {
   return (
@@ -9,13 +8,14 @@ const AddCabin = () => {
       <Modal>
         <Modal.Open
           opens="cabin-form"
-          renderButton={(openModal) => (
+          render={(openModal) => (
             <Button onClick={openModal}>Add new cabin</Button>
           )}
         ></Modal.Open>
-        <Modal.Window name="cabin-form">
-          <CreateCabinForm />
-        </Modal.Window>
+        <Modal.Window
+          name="cabin-form"
+          render={(close) => <CreateCabinForm onCloseModal={close} />}
+        ></Modal.Window>
       </Modal>
     </div>
   );
