@@ -4,9 +4,10 @@ import Empty from "../../ui/Empty.jsx";
 import BookingRow from "./BookingRow.jsx";
 import { useBookings } from "./useBookings.js";
 import Spinner from "../../ui/Spinner.jsx";
+import Pagination from "../../ui/Pagination.jsx";
 
 function BookingTable() {
-  const { bookings, isLoading, error } = useBookings();
+  const { bookings, isLoading, error, count } = useBookings();
 
   console.log(bookings);
   if (isLoading) return <Spinner />;
@@ -30,6 +31,9 @@ function BookingTable() {
             <BookingRow key={booking.id} booking={booking} />
           )}
         />
+        <Table.Footer>
+          <Pagination count={count} />
+        </Table.Footer>
       </Table>
     </Menus>
   );
