@@ -6,7 +6,6 @@ import { HiPencil, HiTrash } from "react-icons/hi";
 import { HiSquare2Stack } from "react-icons/hi2";
 import { useCreateCabin } from "./useCreateCabin.js";
 import Modal from "../../ui/Modal.jsx";
-import Button from "../../ui/Button.jsx";
 import ConfirmDelete from "../../ui/ConfirmDelete.jsx";
 import Table from "../../ui/Table.jsx";
 import Menus from "../../ui/Menus.jsx";
@@ -110,7 +109,6 @@ const CabinRow = ({ cabin }) => {
                   opens="delete"
                   render={(openModal) => (
                     <Menus.Button icon={<HiTrash />} onClick={openModal}>
-                      <HiTrash />
                       Delete
                     </Menus.Button>
                   )}
