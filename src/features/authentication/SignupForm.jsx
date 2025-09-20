@@ -12,9 +12,9 @@ function SignupForm() {
   const { register, formState, getValues, handleSubmit, reset } = useForm();
   const { errors } = formState;
 
-  function onSubmit({ fullname, email, password }) {
+  function onSubmit({ fullName, email, password }) {
     signup(
-      { fullname, email, password },
+      { fullName, email, password },
       {
         onSettled: () => reset(),
       },
@@ -77,7 +77,12 @@ function SignupForm() {
 
       <FormRow>
         {/* type is an HTML attribute! */}
-        <Button variation="secondary" type="reset">
+        <Button
+          variation="secondary"
+          type="reset"
+          disabled={isLoading}
+          onClick={reset}
+        >
           Cancel
         </Button>
         <Button>Create new user</Button>
